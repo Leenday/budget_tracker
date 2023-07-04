@@ -10,8 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_04_105026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "actial_expenses", force: :cascade do |t|
+    t.string "type"
+    t.string "comment"
+    t.decimal "amount", precision: 8, scale: 2
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_actial_expenses_on_user_id"
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.string "source"
+    t.string "comment"
+    t.decimal "amount", precision: 8, scale: 2
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_incomes_on_user_id"
+  end
+
+  create_table "planned_expenses", force: :cascade do |t|
+    t.string "type"
+    t.decimal "amount", precision: 8, scale: 2
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_planned_expenses_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "login"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "actial_expenses", "users"
+  add_foreign_key "incomes", "users"
+  add_foreign_key "planned_expenses", "users"
 end
