@@ -1,6 +1,6 @@
-class CreateActialExpenses < ActiveRecord::Migration[7.0]
+class CreateActualExpenses < ActiveRecord::Migration[7.0]
   def change
-    create_table :actial_expenses do |t|
+    create_table :actual_expenses do |t|
       t.string :type
       t.string :comment
       t.decimal :amount, precision: 8, scale: 2
