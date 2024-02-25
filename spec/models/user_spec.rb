@@ -19,4 +19,9 @@ RSpec.describe User, type: :model do
     subject.password_digest = nil
     expect(subject).to_not be_valid
   end
+
+  it 'test' do
+    user = create :user
+    assert user.persisted?
+  end
 end

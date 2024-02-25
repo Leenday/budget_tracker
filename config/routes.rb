@@ -3,5 +3,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root to: 'web/incomes#index'
+  root 'homepage#index'
+  # root to: 'web/incomes#index'
+  #
+  # scope module: :web do
+  #   resource :incomes, only: :index
+  #   resource :session, only: %i[new create destroy]
+  # end
 end
